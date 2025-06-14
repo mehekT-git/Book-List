@@ -1,27 +1,27 @@
-console.log("BooksCard.jsx loaded");
-
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { PiBookOpenTextLight } from 'react-icons/pi';
-import { BiUserCircle } from 'react-icons/bi';
-import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { MdOutlineDelete } from 'react-icons/md';
-import BookSingleCard from './BookSingleCard';
 
 const BooksCard = ({ books }) => {
-  if (!books || !Array.isArray(books) || books.length === 0) {
-    return (
-      <div className="text-center p-4 text-gray-500">
-        No books available.
-      </div>
-    );
-  }
-
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {books.map((item) => (
-        <BookSingleCard key={item._id} book={item} />
-      ))}
+    <div className="card-view">
+      <div className="cards-container">
+        {books.map((book) => (
+          <div key={book._id} className="card">
+            <div className="card-year-badge">{book.publishYear}</div>
+            <p className="card-id">{book._id}</p>
+            <p className="card-title">📘 {book.title}</p>
+            <p className="card-author">👤 {book.author}</p>
+            <div className="card-icons">
+              <Link to={`/books/details/${book._id}`}><BsInfoCircle style={{ color: 'blue' }} /></Link>
+              <Link to={`/books/edit/${book._id}`}><AiOutlineEdit style={{ color: 'orange' }} /></Link>
+              <Link to={`/books/delete/${book._id}`}><MdOutlineDelete style={{ color: 'red' }} /></Link>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

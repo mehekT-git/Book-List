@@ -1,42 +1,208 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* app.css */
+
+/* ------------------ GLOBAL (unchanged) ------------------ */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  display: flex; /* Use flexbox to center all content of the website */
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center horizontally */
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  padding-top: 2rem; /* Add padding to prevent content from touching edges */
+  padding-bottom: 2rem;
+  box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Container for "Table" and "Card" buttons */
+/* You should apply this class to the div containing these buttons in your HTML */
+.view-switcher {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally within this container */
+    width: 100%; /* Take full width to allow centering */
+    margin-bottom: 1rem; /* Add some space below the buttons */
+    /* Ensure this container is also centered by the body's align-items: center */
+    max-width: fit-content; /* Allow container to shrink to content, but still be centered */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* "Books List" heading */
+h1 {
+  text-align: center; /* Center the text within the heading */
+  width: 100%; /* Ensure it takes full width for centering */
+  margin-top: 0; /* Remove extra top margin */
+  margin-bottom: 1.5rem; /* Add space below the heading */
+  /* This h1 will be centered by the body's align-items: center */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+/* ------------------ CARD VIEW (DO NOT TOUCH) ------------------ */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
 .card {
-  padding: 2em;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease-in-out;
+  width: 250px;
+  box-sizing: border-box;
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12);
+}
+
+.card-id {
+  font-size: 0.75rem;
+  color: #6b7280;
+  word-break: break-word;
+  margin-bottom: 0.3rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.3rem 0;
+}
+
+.card-author {
+  font-size: 0.875rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-year-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #fecaca;
+  color: #b91c1c;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card-icons {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  color: #4b5563;
+}
+
+.card-icons a:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* ------------------ TABLE VIEW (EDITED HERE) ------------------ */
+/* ------------------ TABLE VIEW (updated for transparent bg) ------------------ */
+
+/* This rule specifically targets the .card class when it contains a table.
+   It overrides the default .card styling to make the table container transparent
+   and allow its content (the table itself) to be directly on the page background. */
+.card.p-4.overflow-x-auto { /* Targeting the specific div wrapping the table in BooksTable.jsx */
+  background-color: transparent !important; /* Remove white background */
+  border: none !important; /* Remove border */
+  box-shadow: none !important; /* Remove shadow */
+  border-radius: 0 !important; /* Remove border-radius */
+  width: auto; /* Allow content to dictate width */
+  max-width: 100%; /* Ensure it doesn't overflow */
+  padding: 0; /* Remove padding from this wrapper if it's no longer a 'card' visually */
+  display: block; /* Change back to block to allow centering via margin auto */
+  margin: 0 auto; /* Center the table container itself */
+}
+
+.card table {
+  width: auto; /* Allow table to shrink to content, or set a max-width */
+  max-width: 90%; /* Optional: to prevent it from being too wide on large screens */
+  border-collapse: separate;
+  border-spacing: 0.5rem;
+  background-color: transparent; /* Ensure the table itself has no background */
+  box-shadow: none; /* Ensure the table itself has no shadow */
+  border-radius: 0; /* Ensure the table itself has no border-radius */
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  /* Table will be centered by its parent .card.p-4.overflow-x-auto */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card thead tr th {
+  background-color: #e2e8f0; /* slate-200 */
+  color: #1a202c; /* text-slate-900 */
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #64748b;
+  font-weight: 600;
+  text-align: center;
+}
+
+.card tbody tr {
+  background-color: transparent; /* Background for table rows */
+}
+
+.card tbody tr td {
+  border: 1px solid #475569;
+  border-radius: 0.375rem;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  color: #1f2937; /* gray-800 */
+  vertical-align: middle;
+}
+
+/* Hide Author and Publish Year columns on small screens */
+@media (max-width: 767px) {
+  .card thead tr th:nth-child(3),
+  .card thead tr th:nth-child(4),
+  .card tbody tr td:nth-child(3),
+  .card tbody tr td:nth-child(4) {
+    display: none;
+  }
+}
+
+/* Table action icons row */
+.card .flex.justify-center.gap-x-4 {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.card .flex.justify-center.gap-x-4 a .text-2xl {
+  font-size: 1.5rem;
+}
+
+.card .flex.justify-center.gap-x-4 a .text-green-800 {
+  color: #166534;
+}
+
+.card .flex.justify-center.gap-x-4 a .text-yellow-600 {
+  color: #ca8a04;
+}
+
+.card .flex.justify-center.gap-x-4 a .text-red-600 {
+  color: #dc2626;
+}
+
+.card .flex.justify-center.gap-x-4 a:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }

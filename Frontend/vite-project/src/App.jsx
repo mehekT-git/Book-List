@@ -1,10 +1,11 @@
 import React from 'react';
+import './App.css'; // ✅ Importing styles
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateBooks from './pages/CreateBooks';
 import ShowBook from './pages/ShowBook';
 import EditBook from './pages/EditBook';
-import DeleteBook from './pages/DeleteBook';
+import DeleteBook from './pages/DeleteBook'; // <-- This is the correct default import
 
 const App = () => {
   return (
