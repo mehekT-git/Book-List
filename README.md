@@ -1,7 +1,7 @@
-# Book-Store
-# 📚 Book Store App
+# Book-List
+# 📚 Book List App
 
-A full-stack **Book Store Web Application** that allows users to explore, add, update, and delete books. This app is built with **React** (Frontend), **Node.js + Express.js** (Backend), and **MongoDB** (Database). It's designed to be clean, responsive, and easy to use.
+A full-stack **Book List Web Application** that allows users to explore, add, update, and delete books. This app is built with **React** (Frontend), **Node.js + Express.js** (Backend), and **MongoDB** (Database). It's designed to be clean, responsive, and easy to use.
 
 ---
 
